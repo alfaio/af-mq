@@ -1,10 +1,11 @@
-package io.github.alfaio.mq.core;
+package io.github.alfaio.mq.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * @author LinMF
@@ -14,9 +15,18 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AfMessage<T> {
+    static AtomicLong idGen = new AtomicLong(0);
     //    private String topic;
     private Long id;
     private T body;
     private Map<String, String> headers; //系统属性
 //    private Map<String, String> properties; // 业务属性
+
+    public static long getId() {
+        return idGen.incrementAndGet();
+    }
+
+    public static AfMessage<?> create(String body, Map<String, String> headers) {
+        return new AfMessage<>(getId(), body, headers);
+    }
 }

@@ -1,9 +1,9 @@
 package io.github.alfaio.mq.demo;
 
-import io.github.alfaio.mq.core.AfBroker;
-import io.github.alfaio.mq.core.AfConsumer;
-import io.github.alfaio.mq.core.AfMessage;
-import io.github.alfaio.mq.core.AfProducer;
+import io.github.alfaio.mq.client.AfBroker;
+import io.github.alfaio.mq.client.AfConsumer;
+import io.github.alfaio.mq.model.AfMessage;
+import io.github.alfaio.mq.client.AfProducer;
 import lombok.SneakyThrows;
 
 /**

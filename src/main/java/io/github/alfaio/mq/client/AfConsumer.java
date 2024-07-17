@@ -1,16 +1,24 @@
-package io.github.alfaio.mq.core;
+package io.github.alfaio.mq.client;
+
+import io.github.alfaio.mq.model.AfMessage;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author LinMF
  * @since 2024/7/16
  **/
 public class AfConsumer<T> {
+    String id;
     AfBroker broker;
     String topic;
     AfMq mq;
 
+    static AtomicInteger idGen = new AtomicInteger(0);
+
     public AfConsumer(AfBroker broker) {
         this.broker = broker;
+        this.id = "CID" + idGen.getAndIncrement();
     }
 
     public void subscribe(String topic) {

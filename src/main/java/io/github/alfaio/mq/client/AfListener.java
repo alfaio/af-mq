@@ -1,4 +1,6 @@
-package io.github.alfaio.mq.core;
+package io.github.alfaio.mq.client;
+
+import io.github.alfaio.mq.model.AfMessage;
 
 /**
  * @author LinMF

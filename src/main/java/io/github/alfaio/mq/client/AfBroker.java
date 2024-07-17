@@ -1,4 +1,4 @@
-package io.github.alfaio.mq.core;
+package io.github.alfaio.mq.client;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

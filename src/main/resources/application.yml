@@ -1,1 +1,6 @@
-spring.application.name=af-mq
+server:
+  port: 8765
+
+spring:
+  application:
+    name: af-mq
