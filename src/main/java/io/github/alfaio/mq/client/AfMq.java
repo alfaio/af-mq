@@ -13,6 +13,7 @@ import java.util.concurrent.TimeUnit;
  * @since 2024/7/16
  **/
 public class AfMq<T> {
+/*
 
     private final String topic;
 
@@ -31,12 +32,14 @@ public class AfMq<T> {
         return offered;
     }
 
-    /**
+    */
+/**
      * 拉模式获取消息
      *
      * @param timeout timeout
      * @return message
-     */
+     *//*
+
     @SneakyThrows
     public AfMessage<T> poll(long timeout) {
         return queue.poll(timeout, TimeUnit.MILLISECONDS);
@@ -45,5 +48,6 @@ public class AfMq<T> {
     public void addListener(AfListener<T> listener) {
         listeners.add(listener);
     }
+*/
 
 }

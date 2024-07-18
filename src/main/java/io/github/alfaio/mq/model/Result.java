@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @author LinMF
  * @since 2024/7/17
@@ -25,11 +27,14 @@ public class Result<T> {
         return new Result<>(1, msg);
     }
 
-    public static Result<AfMessage<?>> msg(String msg) {
-        return new Result<>(1, AfMessage.create(msg, null));
-    }
+//    public static Result<AfMessage<?>> msg(String msg) {
+//        return new Result<>(1, AfMessage.create(msg, null));
+//    }
 
     public static Result<AfMessage<?>> msg(AfMessage<?> msg) {
+        return new Result<>(1, msg);
+    }
+    public static Result<List<AfMessage<?>>> msg(List<AfMessage<?>> msg) {
         return new Result<>(1, msg);
     }
 

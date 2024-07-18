@@ -1,0 +1,16 @@
+### sub
+GET http://localhost:8765/afmq/sub?t=io.github.alfaio.test&cid=af
+
+### send
+POST http://localhost:8765/afmq/send?t=io.github.alfaio.test
+Content-Type: application/json
+
+{
+  "body": "{\"id\":0,\"item\":\"item0\",\"price\":0}"
+}
+
+### recv
+GET http://localhost:8765/afmq/recv?t=io.github.alfaio.test&cid=af
+
+### ack
+GET http://localhost:8765/afmq/ack?t=io.github.alfaio.test&cid=af&offset=2

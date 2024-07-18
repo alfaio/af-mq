@@ -15,8 +15,6 @@ public class AfProducer<T> {
     }
 
     public boolean send(String topic, AfMessage<T> message) {
-        AfMq<T> mq = (AfMq<T>) broker.find(topic);
-        if (mq == null) throw new RuntimeException("topic not found");
-        return mq.sand(message);
+        return broker.sand(topic, message);
     }
 }

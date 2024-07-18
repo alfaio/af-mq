@@ -1,6 +1,7 @@
 package io.github.alfaio.mq.client;
 
 import io.github.alfaio.mq.model.AfMessage;
+import lombok.Getter;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -11,8 +12,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class AfConsumer<T> {
     String id;
     AfBroker broker;
-    String topic;
-    AfMq mq;
+//    String topic;
 
     static AtomicInteger idGen = new AtomicInteger(0);
 
@@ -21,17 +21,36 @@ public class AfConsumer<T> {
         this.id = "CID" + idGen.getAndIncrement();
     }
 
-    public void subscribe(String topic) {
-        this.topic = topic;
-        mq = broker.find(topic);
-        if (mq ==null) throw new RuntimeException("topic not found");
+    public void sub(String topic) {
+//        this.topic = topic;
+        broker.sub(topic, id);
     }
 
-    public AfMessage<T> poll(long timeout){
-        return mq.poll(timeout);
+    public void unsub(String topic) {
+//        this.topic = topic;
+        broker.unsub(topic, id);
     }
 
-    public void listen(AfListener<T> listener) {
-        mq.addListener(listener);
+    public AfMessage<T> recv(String topic) {
+        return broker.recv(topic, id);
     }
+
+    public boolean ack(String topic, int offset) {
+        return broker.ack(topic, id, offset);
+    }
+
+    public boolean ack(String topic, AfMessage<String> message) {
+        String offset = message.getHeaders().get("X-offset");
+        return broker.ack(topic, id, Integer.parseInt(offset));
+    }
+
+    // todo
+    public void listen(String topic, AfListener<T> listener) {
+        this.listener = listener;
+        broker.addConsumer(topic, this);
+    }
+
+    @Getter
+    private AfListener listener;
+
 }
