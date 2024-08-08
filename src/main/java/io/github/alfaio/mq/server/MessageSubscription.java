@@ -14,5 +14,5 @@ import lombok.NoArgsConstructor;
 public class MessageSubscription {
     private String topic;
     private String consumerId;
-    private int offset = -1;
+    private int offset = 0;
 }

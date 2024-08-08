@@ -23,11 +23,11 @@ public class AfMessage<T> {
     private Map<String, String> headers = new HashMap<>(); //系统属性
 //    private Map<String, String> properties; // 业务属性
 
-    public static long getId() {
+    public static long nextId() {
         return idGen.incrementAndGet();
     }
 
     public static AfMessage<?> create(String body, Map<String, String> headers) {
-        return new AfMessage<>(getId(), body, headers);
+        return new AfMessage<>(nextId(), body, headers);
     }
 }

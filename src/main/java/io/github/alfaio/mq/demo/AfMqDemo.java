@@ -19,24 +19,23 @@ public class AfMqDemo {
         String topic = "io.github.alfaio.test";
         AfBroker broker = AfBroker.getDefault();
         AfProducer<String> producer = broker.createProducer();
-        AfConsumer<Order> consumer = broker.createConsumer(topic);
-        consumer.listen(topic, message -> {
-            System.out.println("onMessage ok =>" + message);
-        });
+//        AfConsumer<Order> consumer = broker.createConsumer(topic);
+//        consumer.listen(topic, message -> {
+//            System.out.println("onMessage ok =>" + message);
+//        });
 
-//        AfConsumer<?> consumer1 = broker.createConsumer(topic);
-//        consumer1.sub(topic);
+        AfConsumer<?> consumer1 = broker.createConsumer(topic);
 
         for (int i = 0; i < 10; i++) {
             Order order = new Order(ids, "item" + ids, 100 * ids);
             producer.send(topic, new AfMessage<>(ids++, JSON.toJSONString(order), null));
         }
 
-//        for (int i = 0; i < 10; i++) {
-//            AfMessage<String> message = (AfMessage<String>)consumer1.recv(topic);
-//            System.out.println(message);
-//            consumer1.ack(topic, message);
-//        }
+        for (int i = 0; i < 10; i++) {
+            AfMessage<String> message = (AfMessage<String>)consumer1.recv(topic);
+            System.out.println(message);
+            consumer1.ack(topic, message);
+        }
         while (true) {
             char c = (char) System.in.read();
 //            if (c == 'q' || c == 'e') {
